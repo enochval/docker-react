@@ -1,13 +1,12 @@
 version: 2.1
 
 workflows:
-  version: 2
   build:
     jobs:
-      - build
+      - tests
 
 jobs:
-  build:
+  tests:
     filters:
       branches:
         only:
@@ -18,6 +17,7 @@ jobs:
       - checkout
       - setup_remote_docker: 
           version: 20.10.14
+          docker_layer_caching: true
       - run:
           name: build-docker-image
           command: docker build -t enochval/docker-react -f Dockerfile.dev .
