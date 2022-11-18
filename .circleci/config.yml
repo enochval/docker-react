@@ -12,6 +12,8 @@ jobs:
       - image: cimg/base:2022.05 # Primary execution image
     steps:
       - checkout
+      - setup_remote_docker:
+        version: 20.10.14
       - run:
           name: build-docker-image
           command: docker build -t enochval/docker-react -f Dockerfile.dev .
