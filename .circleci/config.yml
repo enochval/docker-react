@@ -19,6 +19,6 @@ jobs:
           command: docker build -t enochval/docker-react -f Dockerfile.dev .
       - run:
           name: run-test
-          command: docker run enochval/docker-react npm run test -- --converage
+          command: docker run enochval/docker-react npm run test -- --coverage
 
 # VS Code Extension Version: 1.1.1
