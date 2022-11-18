@@ -1,16 +1,12 @@
 version: 2.1
 
 workflows:
-  build:
+  testing_ci:
     jobs:
       - tests
 
 jobs:
   tests:
-    filters:
-      branches:
-        only:
-          - master
     docker:
       - image: cimg/base:2022.05 # Primary execution image
     steps:
