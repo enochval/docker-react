@@ -1,0 +1,20 @@
+version: 2.1
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+
+jobs:
+  build:
+    docker:
+      - image: cimg/base:2022.05 # Primary execution image
+    steps:
+      - checkout
+      - run:
+          name: build-docker-image
+          command: docker build -t enochval/docker-react -f Dockerfile.dev .
+      - run:
+          name: run-test
+          command: docker run enochval/docker-react npm run test -- --converage
