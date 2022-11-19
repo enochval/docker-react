@@ -7,11 +7,11 @@ workflows:
 
 jobs:
   tests:
-    # docker:
-    #   - image: cimg/base:2022.05 # Primary execution image
-    when:
-      condition:
-        equal: [master, << pipeline.git.branch >> ]
+    docker:
+      - image: cimg/base:2022.05 # Primary execution image
+      when:
+        condition:
+          equal: [master, << pipeline.git.branch >> ]
       steps:
         - checkout
         - setup_remote_docker: 
