@@ -3,11 +3,11 @@ version: 2.1
 workflows:
   testing_ci:
     jobs:
-      - tests
+      - tests:
         filters:
-            branches:
-              only:
-                - master
+          branches:
+            only:
+              - master
 
 jobs:
   tests:
