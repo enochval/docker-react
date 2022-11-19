@@ -4,20 +4,21 @@ workflows:
   testing_ci:
     jobs:
       - tests
+        filters:
+            branches:
+              only:
+                - master
 
 jobs:
   tests:
     docker:
       - image: cimg/base:2022.05 # Primary execution image
-    when:
-      condition:
-        equal: [master, << pipeline.git.branch >> ]
-      steps:
-        - checkout
-        - setup_remote_docker: 
-            version: 20.10.14
-            docker_layer_caching: true
-        - run: docker build -t enochval/docker-react -f Dockerfile.dev .
-        - run: docker run -e CI=true enochval/docker-react npm run test -- --coverage
+    steps:
+      - checkout
+      - setup_remote_docker: 
+          version: 20.10.14
+          docker_layer_caching: true
+      - run: docker build -t enochval/docker-react -f Dockerfile.dev .
+      - run: docker run -e CI=true enochval/docker-react npm run test -- --coverage
 
 # VS Code Extension Version: 1.1.1
